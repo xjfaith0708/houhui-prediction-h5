@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-visual" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1B50B2">
+  <title>哔哩哔哩预测</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./overrides.css?v=20261124-9" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <button class="back" aria-label="返回"></button><h1>哔哩哔哩预测</h1>
+      <img class="show-logo" src="./assets/show-logo.png" alt="后会友期">
+      <img class="house" src="./assets/raw11.png" alt="山间小屋" />
+    </header>
+
+
+    <section class="unified-top-card" aria-label="人物预测">
+      <img id="unified-top-image" src="./assets/unified-top-1.webp" width="351" height="399" style="display:block;width:100%;height:auto;max-width:100%" alt="许飞与厉娜预测卡" />
+      <nav class="unified-top-tabs" aria-label="切换人物预测">
+        <button aria-label="许飞&厉娜" aria-pressed="true"></button>
+        <button aria-label="张萌&马天宇" aria-pressed="false"></button>
+        <button aria-label="白小纯&青稚" aria-pressed="false"></button>
+        <button aria-label="王子璇&文吉儿" aria-pressed="false"></button>
+      </nav>
+    </section>
+    <img class="section-title first" src="./assets/prediction-title@2x.png" alt="预测广场" />
+    <nav class="filter prediction-filter"><button class="active" data-filter="all">全部</button><button data-filter="open">进行中</button><button data-filter="closed">已封盘</button><button data-filter="done">已开奖</button></nav>
+    <section id="predictions" class="predictions"></section>
+    <button class="more">查看更多预测内容⌄</button>
+
+    <section class="comment-panel">
+      <h2 class="discussion-heading"><img src="./assets/discussion-bubble.svg" alt="">热点讨论 124</h2>
+      <nav class="filter comment-filter"><button class="active">全部</button><button>许飞&厉娜</button><button>张萌&马天宇</button><button>白小纯&青稚</button><button>王子璇&文吉儿</button></nav>
+      <section id="comments" class="comments"></section>
+      <form class="composer"><input aria-label="评论" placeholder="发一条友善的评论"/><button>☺</button></form>
+    </section>
+  </main>
+  <div id="toast" role="status"></div>
+  <script src="./app.js?v=20261124-2"></script>
+</body>
+</html>
