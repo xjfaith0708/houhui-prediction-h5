@@ -347,7 +347,7 @@
 .tab-progress {
   position: absolute;
   inset: 0;
-  background: #ffffffb0;
+  background: #ffffff65;
   transform: scaleX(0);
   transform-origin: left center;
   pointer-events: none;
