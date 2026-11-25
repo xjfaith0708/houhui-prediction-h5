@@ -8,6 +8,9 @@ const predictions=document.querySelector('#predictions');
 function drawUnifiedChart(index){
  window.activePredictionIndex=index;
  renderTopCoins(index);
+ betHotspots.querySelectorAll(".top-bet-ratio").forEach((ratio, side) => {
+  ratio.textContent = topBetPercentages[index][side] + "%";
+ });
  const names=['许飞和厉娜','张萌和马天宇','白小纯和青稚','王子璇和文吉儿'];
  let feed=document.querySelector('.top-comment-preview');
  if(!feed){
@@ -63,12 +66,13 @@ function drawUnifiedChart(index){
  days.forEach((button, i) => button.onclick = () => selectDay(i));
  selectDay(dates.length - 1);
 }
+const topBetPercentages = [[54, 46], [88, 12], [92, 8], [4, 96]];
 const betHotspots = document.createElement('div');
 betHotspots.className = 'bet-hotspots';
 for (const label of ['和好', '不和好']) {
  const button = document.createElement('button');
  button.type = 'button';
- button.innerHTML = '<span class="top-bet-label">' + label + '</span>' +
+ button.innerHTML = '<span class="top-bet-label">' + label + ' <span class="top-bet-ratio"></span></span>' +
   '<span class="top-bet-coins"><span class="coin-icon" aria-hidden="true">币</span><span class="coin-total"></span></span>';
  betHotspots.append(button);
 }
@@ -144,7 +148,7 @@ function updateBet(){
 betHotspots.querySelectorAll('button').forEach((button,i)=>button.addEventListener('click',()=>{
  betReturnFocus=button;betOption=i;betInput.value=100;
  const names=['许飞与厉娜','马天宇与张萌','白小纯与张庆波','王子璇与文吉儿'];
- const percentages=[[54,46],[88,12],[92,4],[4,96]][window.activePredictionIndex];
+ const percentages=topBetPercentages[window.activePredictionIndex];
  betDialog.querySelector('h2').textContent='节目《后会友期》中'+names[window.activePredictionIndex]+'会和好吗';
  betDialog.querySelectorAll('[data-option] b').forEach((b,j)=>b.textContent=percentages[j]+'%');
  updateBet();betDialog.showModal();
