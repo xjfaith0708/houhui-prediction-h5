@@ -339,7 +339,7 @@
   cursor: pointer;
 }
 .unified-top-tabs button[aria-pressed="true"] {
-  background: #ffffffb8;
+  background: rgb(255 255 255 / 90%);
   color: #e44379;
 }
 .unified-top-tabs button:focus-visible { outline: 2px solid white; outline-offset: -2px; }
@@ -347,7 +347,7 @@
 .tab-progress {
   position: absolute;
   inset: 0;
-  background: #ffffff65;
+  background: #fff;
   transform: scaleX(0);
   transform-origin: left center;
   pointer-events: none;
