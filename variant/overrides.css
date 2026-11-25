@@ -508,7 +508,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  min-height: 17px;
+  min-height: 20px;
   background: #f5f2ef;
   font-size: 11px;
   font-weight: 600;
@@ -529,23 +529,16 @@
 .chart-ratios span + span::before { background: #0ea9f1; }
 .chart-body { position: absolute; inset: 24% 0 -5px; background: #f4f1ee; }
 .chart-body::before { content: ""; position: absolute; inset: 0 -6px 0 100%; background: inherit; pointer-events: none; }
-.chart-lines { position: absolute; top: 6%; left: 0; width: 88%; height: 70%; overflow: visible; }
-.chart-lines path { stroke: #d9d4cf; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.chart-lines { position: absolute; top: 6%; left: 0; width: calc(100% - 25px); height: 70%; overflow: visible; }
+.chart-lines path { stroke: #e1dedb; stroke-width: 1; vector-effect: non-scaling-stroke; }
 .chart-lines polyline { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
-.chart-marker-layer { position: absolute; top: 6%; left: 0; width: 88%; height: 70%; pointer-events: none; }
+.chart-marker-layer { position: absolute; top: 6%; left: 0; width: calc(100% - 25px); height: 70%; pointer-events: none; }
 .chart-marker-layer i { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: currentColor; color: #ff6699; transform: translate(-50%, -50%); }
 .chart-marker-layer i + i { color: #0ea9f1; }
 .chart-marker-layer i::after { content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .38; }
-@media (prefers-reduced-motion: no-preference) {
-  .chart-marker-layer i::after { animation: chart-ring 1.8s ease-out infinite; }
-}
-@keyframes chart-ring {
-  0%, 100% { transform: scale(.9); opacity: .38; }
-  55% { transform: scale(1.12); opacity: .22; }
-}
-.chart-scale { position: absolute; top: 6%; left: 90%; right: 0; height: 70%; color: #a6acb9; font-size: 9px; }
+.chart-scale { position: absolute; top: 6%; left: 90%; right: 0; height: 70%; color: #b0b5bf; font-size: 9px; }
 .chart-scale span { position: absolute; right: 0; top: var(--tick); transform: translateY(-50%); }
-.chart-days { position: absolute; top: 0; bottom: 0; left: 0; width: 88%; }
+.chart-days { position: absolute; top: 0; bottom: 0; left: 0; width: calc(100% - 25px); }
 .chart-days button { position: absolute; inset: 0 auto 0 var(--day-x); width: 20%; transform: translateX(-50%); display: flex; align-items: flex-end; justify-content: center; padding: 0 0 3px; border: 0; background: transparent; color: #767676; font-size: 11px; cursor: pointer; }
 .chart-days button[aria-pressed="true"] { color: #767676; }
 .chart-days button:focus-visible { outline: 2px solid #004078; outline-offset: -2px; }
