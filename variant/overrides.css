@@ -533,15 +533,16 @@
 .chart-lines path { stroke: #e1dedb; stroke-width: 1; vector-effect: non-scaling-stroke; }
 .chart-lines polyline { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .chart-marker-layer { position: absolute; top: 6%; left: 0; width: calc(100% - 25px); height: 70%; pointer-events: none; }
-.chart-marker-layer i { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: currentColor; color: #ff6699; transform: translate(-50%, -50%); }
+.chart-marker-layer i { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: currentColor; color: #ff6699; transform: translate(-50%, -50%); }
 .chart-marker-layer i + i { color: #0ea9f1; }
-.chart-marker-layer i::after { will-change: transform, opacity; content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .38; }
+.chart-marker-layer i::after { will-change: transform, opacity; content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .42; }
 @media (prefers-reduced-motion: no-preference) {
-  .chart-marker-layer i::after { animation: chart-ring 1.8s ease-out infinite; }
+  .chart-marker-layer i::after { animation: chart-ring 2.4s ease-in-out infinite; }
 }
 @keyframes chart-ring {
-  0% { transform: scale(.85); opacity: .45; }
-  75%, 100% { transform: scale(1.2); opacity: 0; }
+  0% { transform: scale(.8); opacity: 0; }
+  30% { opacity: .62; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
 .chart-scale { position: absolute; top: 6%; left: 90%; right: 0; height: 70%; color: #b0b5bf; font-size: 9px; }
 .chart-scale span { position: absolute; right: 0; top: var(--tick); transform: translateY(-50%); }
