@@ -537,7 +537,7 @@
 .chart-marker-layer i + i { color: #0ea9f1; }
 .chart-marker-layer i::after { will-change: transform, opacity; content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .42; }
 @media (prefers-reduced-motion: no-preference) {
-  .chart-marker-layer i::after { animation: chart-ring 2.4s ease-in-out infinite; }
+  .chart-marker-layer i::after { animation: chart-ring 2.1s ease-in-out infinite; }
 }
 @keyframes chart-ring {
   0% { transform: scale(.8); opacity: 0; }
