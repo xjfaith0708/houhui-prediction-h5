@@ -1,0 +1,628 @@
+.section-title {
+  width: 176px;
+  height: 59px;
+  object-position: -9999px;
+  background: url('./assets/raw07.png') left center / 352px 117px no-repeat;
+}
+.section-title.first { background-position: left center; }
+.section-title.discussion { background-position: right center; }
+
+/* 用户提供的新顶部主视觉：保持原比例并裁切铺满 Hero。 */
+.hero {
+  background-image: url('./assets/hero-mountains.webp');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+.hero .status {
+  background: transparent;
+}
+.hero .brand {
+  display: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 56px;
+  background: linear-gradient(to bottom, rgba(8,123,201,0), #087bc9);
+  pointer-events: none;
+}
+
+/* 导航标题与左侧返回箭头处于同一水平线。 */
+.hero h1 {
+  margin-top: 4px;
+  line-height: 30px;
+}
+.back {
+  top: 29px;
+}
+
+/* 第一张预测卡直接使用提供的完整透明背景。 */
+.hero .house {
+  display: none;
+}
+.feature-card {
+  height: 418px;
+  margin-top: -86px;
+  padding: 100px 10px 0;
+  background: transparent url('./assets/top-card-1.png?v=2') top center / 347px 408px no-repeat;
+  border-radius: 0;
+}
+.people-tabs {
+  margin: 0 -10px;
+  background: transparent;
+  border-radius: 26px 26px 0 0;
+}
+.people-tabs .active {
+  border-radius: 26px 26px 0 0;
+}
+.people-tabs button,
+.people-tabs button.active {
+  color: transparent;
+  background: transparent;
+}
+.feature-card .question {
+  height: 84px;
+  padding: 8px 8px 0;
+  visibility: hidden;
+}
+.feature-card .choice-row button {
+  height: 40px;
+  background: transparent;
+  color: transparent;
+}
+.feature-card .choice-row button + button {
+  background: transparent;
+}
+.feature-card .chart-title,
+.feature-card .chart,
+.feature-card .dates {
+  visibility: hidden;
+}
+
+/* 顶卡与页面两侧保持 14px 安全边距。 */
+.feature-card {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+/* 图片保留网格底图，SVG 只负责绘制可动画的红蓝折线。 */
+.feature-card .chart {
+  visibility: visible;
+  background: transparent;
+  width: 315px;
+  margin-left: 6px;
+  overflow: hidden;
+}
+.feature-card .chart .grid,
+.feature-card .chart i,
+.feature-card .chart em {
+  display: none;
+}
+.feature-card .chart svg {
+  clip-path: inset(0 100% 0 0);
+}
+.feature-card.chart-animate .chart svg {
+  animation: chart-reveal 900ms cubic-bezier(.25,.8,.25,1) forwards;
+}
+@keyframes chart-reveal {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* 独立标题均为 2 倍图，按 50% 等比显示。 */
+.section-title,
+.section-title.first,
+.section-title.discussion {
+  width: 190px;
+  height: auto;
+  max-width: none;
+  object-position: center;
+  background: none;
+  transform: none;
+}
+.more {
+  height: 30px;
+  padding: 0 11px;
+  border-radius: 7px;
+  background: #ffffff42;
+  clip-path: none;
+  color: #fff;
+  font-size: 12px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.more::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px 2px 7px;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+/* 对齐素材内部的白色卡片边界，而非透明画布。 */
+.feature-card[data-card-index="1"],
+.feature-card[data-card-index="2"],
+.feature-card[data-card-index="3"] {
+  background-size: 366px 408px;
+  background-position: calc(50% - 3.3px) top;
+}
+.feature-card[data-card-index="0"] {
+  background-size: 351px 384px;
+  background-position: center 24px;
+}
+.feature-card .chart {
+  position: absolute;
+  top: 303px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 301px;
+  height: 75px;
+  margin: 0;
+}
+.feature-card .people-tabs {
+  position: absolute;
+  left: 50%;
+  right: auto;
+  width: 333px;
+  transform: translateX(-50%);
+  top: 97px;
+  height: 36px;
+  margin: 0;
+}
+.prediction.screenshot-card { height: auto; padding: 0; position: relative; background: transparent; overflow: hidden; }
+.prediction.screenshot-card > img { display: block; width: 100%; height: auto; }
+.prediction.screenshot-card h2,
+.prediction.screenshot-card .meta { display: none; }
+.prediction.screenshot-card .vote { position: absolute; left: 3.5%; width: 93%; top: 45.8%; height: 21%; margin: 0; opacity: 0; cursor: pointer; }
+.prediction.screenshot-card .vote:last-child { top: 71.4%; }
+.prediction.screenshot-card .vote:focus-visible { opacity: 1; outline: 2px solid #f69; background: transparent; color: transparent; }
+.comment-filter { gap: 5px; justify-content: center; }
+.comment-filter button {
+  flex: 0 0 calc((100% - 10px) / 3);
+}
+.comments,
+.composer {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.comment-panel {
+  margin: 0 12px;
+  background: #fff;
+  border-radius: 9px;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+.comment-panel .comments {
+  margin: 0;
+  border-radius: 0;
+}
+.comment-panel .composer {
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 0;
+}
+.comment-filter button {
+  height: 33px;
+  min-width: 81px;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 0;
+  background: transparent url('./assets/tab-blue.png') center / 100% 100% no-repeat;
+  color: #e8f6ff;
+  font-size: 14px;
+  line-height: 33px;
+}
+.comment-filter button.active {
+  background: transparent url('./assets/tab-white.png') center / 100% 100% no-repeat;
+  color: #246d9d;
+}
+.section-title.first,
+.section-title.discussion {
+  margin-bottom: 6px;
+}
+.prediction-filter,
+.comment-filter {
+  margin-bottom: 16px;
+}
+.prediction-filter {
+  justify-content: flex-start;
+  gap: 6px;
+  margin-inline: 15px;
+}
+.prediction-filter button {
+  flex: 0 0 auto;
+  width: auto;
+  padding-inline: 10px;
+  border-radius: 7px;
+  background: #ffffff42;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.prediction-filter button.active {
+  background: #fff;
+  color: #ff6699;
+}
+/* 素材原始比例 240:88，由实际宽度自动推导高度。 */
+.comment-filter button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.prediction-filter button,
+.comment-filter button {
+  height: auto;
+  aspect-ratio: 240 / 88;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comment-filter button {
+  display: block;
+  align-content: center;
+  height: 42px;
+  min-height: 42px;
+  background-size: contain;
+}
+.comment-filter button.active {
+  background-size: contain;
+}
+.coin-progress {
+  position: absolute;
+  left: 3.49%;
+  width: 93.02%;
+  height: 21.15%;
+  top: 45.81%;
+  pointer-events: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.coin-progress-1 { top: 71.37%; }
+.prediction.screenshot-card .vote + .vote { top: 71.4%; }
+.coin-counter {
+  position: absolute;
+  right: 13.8%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  width: 20%;
+  text-align: right;
+  color: #9499a0;
+  font-size: 10px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.coin-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: #ff6699;
+}
+.unified-top-card { position: relative; margin: 0 12px; width: calc(100% - 24px); }
+.unified-top-card > img { display: block; width: 100%; height: auto; }
+.unified-top-tabs {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  margin: 0 12px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.unified-top-tabs.has-more-tabs {
+  mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+}
+.unified-top-tabs button {
+  position: relative;
+  flex: none;
+  padding: 0 10px;
+  height: 32px;
+  border: 0;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #ffffff42;
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.unified-top-tabs button[aria-pressed="true"] {
+  background: #ffffffb8;
+  color: #e44379;
+}
+.unified-top-tabs button:focus-visible { outline: 2px solid white; outline-offset: -2px; }
+.unified-top-tabs span { position: relative; }
+.tab-progress {
+  position: absolute;
+  inset: 0;
+  background: #ffffffb0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.bet-hotspots { position:absolute;left:4.5%;top:46.4%;width:91%;height:10.8%;display:flex;gap:4px; }
+.bet-hotspots button { flex:1;border:0;background:transparent;cursor:pointer; }
+.bet-hotspots button { position:relative;display:flex;align-items:center;justify-content:flex-start;padding:0 9px;color:white;background:#ff5b97;border-radius:8px;clip-path:polygon(0 0,100% 0,95% 100%,0 100%); }
+.bet-hotspots button + button { background:#0ea9f1;clip-path:polygon(5% 0,100% 0,100% 100%,0 100%);padding-left:12px; }
+.bet-hotspots button,
+.bet-hotspots button + button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 0;
+}
+.top-bet-label { font-size: 14px; line-height: 17px; white-space: nowrap; }
+.top-bet-coins { display: flex; align-items: center; gap: 2px; font-size: 11px; line-height: 13px; }
+.coin-icon { width: 10px; height: 10px; border: 1px solid; border-radius: 50%; text-align: center; font-size: 7px; line-height: 8px; }
+.coin-total { display: flex; font-variant-numeric: tabular-nums; }
+.coin-digit { position: relative; display: inline-block; overflow: hidden; }
+.coin-digit span { display: block; }
+.coin-digit .coin-digit-old { position: absolute; inset: 0; }
+.comment-panel .comments { padding-left: 12px; padding-right: 12px; }
+.bet-dialog { position:fixed;inset:auto 0 0;margin:0 auto;width:min(375px,100vw);max-width:100vw;max-height:90dvh;padding:0;border:0;border-radius:12px 12px 0 0;background:#fff;color:#18191c; }
+.bet-dialog::backdrop {background:#0008;}
+.bet-dialog { background: #fff url('./assets/predict-sheet.svg') top center / 375px 112px no-repeat; }
+.bet-sheet {padding:1px 12px 0;background:transparent;}
+.sheet-handle {width:30px;height:3px;border-radius:2px;background:#999;margin:8px auto 18px;}
+.sheet-close {position:absolute;right:10px;top:3px;background:transparent;border:0;color:#888;font-size:20px;}
+.bet-sheet h2 {font-size:16px;line-height:24px;font-weight:500;margin:0 0 8px;}
+.sheet-meta {font-size:12px;color:#9499a0;margin-bottom:20px;}
+.sheet-meta span {background:#f69;color:white;font-size:11px;border-radius:2px;padding:2px 4px;}
+.sheet-options {display:grid;gap:10px;margin-bottom:20px;}
+.sheet-options button {height:54px;border:1px solid #c9ccd0;border-radius:8px;background:white;text-align:left;padding:12px;font-size:14px;}
+.sheet-options b {float:right;color:#f69;font-weight:500;}
+.sheet-options button.chosen {background:#ffecf1;border-color:#ffb3ca;}
+.balance-row {display:flex;justify-content:space-between;padding:0 12px;font-size:14px;margin-bottom:12px;}
+.balance-row small {font-size:12px;color:#9499a0;}
+.amount-stepper {display:flex;height:44px;border:1px solid #e3e5e7;border-radius:8px;overflow:hidden;}
+.amount-stepper button {width:40px;border:0;background:#f4f5f7;}
+.amount-stepper input {width:0;flex:1;text-align:center;border:0;outline:0;font-size:14px;}
+.amount-presets {display:flex;gap:8px;margin-top:8px;}
+.amount-presets button {flex:1;height:30px;border:1px solid #e3e5e7;border-radius:4px;background:white;font-size:12px;}
+.estimate {display:flex;justify-content:space-between;padding:12px;font-size:12px;color:#9499a0;}
+.estimate b {font-size:20px;color:#f69;}
+.bet-error {color:#f69;font-size:12px;margin:0 12px;min-height:17px;}
+.bet-submit {width:100%;height:40px;border:0;border-radius:54px;background:#f69;color:white;font-size:16px;margin-top:10px;}
+.bet-submit:disabled {opacity:.4;}
+.sheet-home {width:134px;height:5px;border-radius:10px;background:#000;margin:21px auto 8px;}
+.discussion-dock {position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(375px,100vw);height:64px;background:#fff;border-radius:15px 15px 0 0;box-shadow:0 0 22px #0004;z-index:20;display:flex;flex-direction:column;transition:height .3s ease;}
+.discussion-dock[hidden] {display:none;}
+.discussion-dock.open {height:var(--discussion-focus-height, calc(100dvh - env(safe-area-inset-top, 0px)));}
+.dock-header {position:relative;flex-shrink:0;width:100%;height:64px;background:transparent;border:0;padding:21px 12px 22px;display:flex;justify-content:space-between;align-items:center;touch-action:none;cursor:grab;}
+.dock-grip {position:absolute;top:8px;left:calc(50% - 15px);width:30px;height:3px;background:#0003;border-radius:2px;}
+.dock-label {display:flex;align-items:center;gap:4px;font-size:14px;font-weight:500;}
+.dock-label img {width:18px;height:18px;}
+.dock-arrow {font-size:20px;color:#9499a0;}
+.open .dock-arrow {transform:rotate(180deg);}
+.dock-body {display:none;overflow-y:auto;overscroll-behavior:contain;flex:1;}
+.open .dock-body {display:block;}
+.dock-body .comment-panel {margin:0;border-radius:0;}
+@media (max-width: 767px) {
+  html, body { width: 100%; margin: 0; overflow-x: hidden; background: #087bc9; }
+  .page { width: 100%; max-width: none; margin: 0; transform: none; height: auto; box-shadow: none; }
+  .hero { background-size: cover; }
+  .discussion-dock, .bet-dialog { width: 100%; max-width: 100%; }
+  .bet-dialog { background-size: 100% 112px; }
+  .photos img { width: calc((100% - 6px) / 3); min-width: 0; }
+}
+.page {padding-bottom:80px;}
+.page > .comment-panel { margin: 30px 0 0; border-radius: 15px 15px 0 0; }
+.discussion-heading { display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500;line-height:24px;margin:0;padding:22px 12px 14px; }
+.discussion-heading img {width:18px;height:18px;}
+.comment-panel .comment-filter {display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin:0;padding:0 12px 14px;scrollbar-width:none;}
+.comment-panel .comment-filter button,
+.comment-panel .comment-filter button.active {flex:0 0 auto;min-width:44px;height:30px;min-height:30px;padding:0 10px;aspect-ratio:auto;border-radius:7px;background:#f0f1f2;color:#61666d;font-size:12px;}
+.comment-panel .comment-filter button.active {color:#ff6699;}
+.comment-panel .comment-filter { overflow-x: auto; touch-action: pan-x; -webkit-overflow-scrolling: touch; }
+.comment-panel .comment-filter button,
+.comment-panel .comment-filter button.active { font-weight: 400; }
+.dock-body .discussion-heading {display:none;}
+.dock-body .comment-panel {margin:0;border-radius:0;}
+.coin-counter { overflow: hidden; height: 18px; width: 22%; }
+.bet-entry { display: block; animation: bet-roll 2.4s ease both; }
+.coin-bar { transition: width 1s ease; }
+.coin-bar { transition: width 650ms linear; }
+.bet-entry { animation-duration: 1.4s; }
+.live-percent { position: absolute; right: 3.5%; top: 50%; transform: translateY(-50%); width: 12%; background: #fff; color: #ff6699; text-align: right; font-size: 14px; line-height: 22px; font-variant-numeric: tabular-nums; }
+.coin-counter { right: 18%; width: 26%; }
+.coin-progress::before {
+  content: '';
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
+  height: 25px;
+  background: #fff;
+}
+@keyframes bet-roll { 0% {transform:translateY(100%);opacity:0} 20%,75% {transform:translateY(0);opacity:1} 100% {transform:translateY(-100%);opacity:0} }
+.prediction.screenshot-card.has-ticker { background: white; padding-bottom: 40px; }
+.has-ticker > img { border-radius: 0; }
+.has-ticker .vote { height: 18%; top: 39%; }
+.has-ticker .vote + .vote { top: 61%; }
+.ticker-window { position: absolute; bottom: 8px; left: 12px; right: 12px; height: 26px; overflow: hidden; background: #f5f7fa; border-radius: 5px; color: #737b86; font-size: 11px; }
+.prediction-ticker { animation: comment-roll 9s infinite; }
+.prediction-ticker > div { height: 26px; line-height: 26px; padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@keyframes comment-roll { 0%,25% {transform:translateY(0)} 33%,58% {transform:translateY(-26px)} 66%,91% {transform:translateY(-52px)} 100% {transform:translateY(-78px)} }
+.more.expanded { display: none; }
+.comment-panel { border-radius: 12px; }
+.comment-panel .comments { padding-top: 16px; }
+.prediction-empty { min-height: 150px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 12px; color: #9499a0; font-size: 14px; }
+.prediction-empty { padding: 20px; }
+.prediction-empty img { display: block; width: 190px; max-width: 100%; height: auto; }
+.comment-filter { justify-content: flex-start; }
+.comment h3 { font-size: 13px; line-height: 18px; }
+.comment .actions { font-size: 12px; line-height: 18px; }
+.unified-top-card { margin-top: -20px; margin-bottom: 28px; }
+.unified-top-card:has(+ .top-comment-preview) { margin-bottom: 0; }
+.top-comment-preview { margin: 0 12px 28px; padding: 0 12px; height: 60px; overflow-y: auto; background: #fff; border-radius: 0 0 12px 12px; color: #737b86; font-size: 12px; overscroll-behavior: contain; scrollbar-width: none; }
+.top-comment-preview::-webkit-scrollbar { display: none; }
+.top-comment-preview > div { height: 40px; display: flex; align-items: center; border-bottom: 1px solid #f0f1f3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.unified-card-shell { margin: -28px 12px 28px; border-radius: 0 0 12px 12px; background: linear-gradient(to bottom, transparent calc(100% - 95px), #fff calc(100% - 75px)); }
+.unified-card-shell .unified-top-card { margin: 0; width: 100%; background: linear-gradient(to bottom, transparent 60%, #F6F3F1 60%); }
+.unified-card-shell #unified-top-image { mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent); }
+.unified-card-shell .top-comment-preview { position: relative; margin: -1px 0 0; padding: 0 12px; border-radius: 0 0 12px 12px; background: #fff; }
+.unified-card-shell { padding-bottom: 16px; background: linear-gradient(to bottom, transparent calc(100% - 130px), #F6F3F1 calc(100% - 100px)); }
+.unified-card-shell .top-comment-preview { margin: 18px 5% 0; padding: 0; height: 45px; mask-image: linear-gradient(transparent, black 8px, black calc(100% - 8px), transparent); overflow: hidden; border-radius: 0; background: #F6F3F1; }
+.top-comment-preview > .top-comment-track { display:block; height:auto; border:0; overflow:visible; animation: top-comments-drift 13.5s linear infinite; }
+.top-comment-track > div { height:30px; line-height:30px; border:0; display:flex; align-items:center; gap:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.preview-avatar { display:inline-flex; align-items:center; justify-content:center; flex:0 0 18px; width:18px; height:18px; border-radius:50%; background:#e8e3df; font-size:11px; line-height:18px; }
+@keyframes top-comments-drift { from {transform:translateY(0)} to {transform:translateY(-50%)} }
+.more { margin-top: 16px; }
+.section-title.discussion { margin-top: 23px; }
+.section-title.first { width: 172px; margin: 23px auto 12px; }
+.prediction-filter button {
+  height: 30px;
+  min-height: 30px;
+  aspect-ratio: auto;
+}
+.comment p {
+  font-size: 15px;
+  line-height: 23px;
+}
+.comment .reply { font-size: 14px; line-height: 22px; }
+.prediction.screenshot-card.has-ticker { padding-bottom: 54px; }
+.ticker-window { height: 40px; font-size: 15px; }
+.prediction-ticker > div { height: 40px; line-height: 40px; font-size: 12px; }
+.ticker-window { font-size: 12px; }
+.prediction-chart { position: absolute; inset: 62.1% 4.5% 2.6%; color: #004078; }
+.chart-ratios {
+  position: absolute;
+  top: 1px;
+  left: 43%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  min-height: 17px;
+  background: #f5f2ef;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.chart-ratios span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.chart-ratios span::before {
+  content: '';
+  width: 3px;
+  height: 11px;
+  border-radius: 2px;
+  background: #ff6699;
+}
+.chart-ratios span + span::before { background: #0ea9f1; }
+.chart-body { position: absolute; inset: 24% 0 -5px; background: #f4f1ee; }
+.chart-body::before { content: ""; position: absolute; inset: 0 -6px 0 100%; background: inherit; pointer-events: none; }
+.chart-lines { position: absolute; top: 6%; left: 0; width: 88%; height: 70%; overflow: visible; }
+.chart-lines path { stroke: #d9d4cf; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.chart-lines polyline { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.chart-marker-layer { position: absolute; top: 6%; left: 0; width: 88%; height: 70%; pointer-events: none; }
+.chart-marker-layer i { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: currentColor; color: #ff6699; transform: translate(-50%, -50%); }
+.chart-marker-layer i + i { color: #0ea9f1; }
+.chart-marker-layer i::after { content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .38; }
+@media (prefers-reduced-motion: no-preference) {
+  .chart-marker-layer i::after { animation: chart-ring 1.8s ease-out infinite; }
+}
+@keyframes chart-ring {
+  0%, 100% { transform: scale(.9); opacity: .38; }
+  55% { transform: scale(1.12); opacity: .22; }
+}
+.chart-scale { position: absolute; top: 6%; left: 90%; right: 0; height: 70%; color: #a6acb9; font-size: 9px; }
+.chart-scale span { position: absolute; right: 0; top: var(--tick); transform: translateY(-50%); }
+.chart-days { position: absolute; top: 0; bottom: 0; left: 0; width: 88%; }
+.chart-days button { position: absolute; inset: 0 auto 0 var(--day-x); width: 20%; transform: translateX(-50%); display: flex; align-items: flex-end; justify-content: center; padding: 0 0 3px; border: 0; background: transparent; color: #767676; font-size: 11px; cursor: pointer; }
+.chart-days button[aria-pressed="true"] { color: #767676; }
+.chart-days button:focus-visible { outline: 2px solid #004078; outline-offset: -2px; }
+@keyframes pulse-appear { to { opacity: 1; } }
+@keyframes endpoint-pulse { from { transform: scale(.6); opacity: .8; } to { transform: scale(1.7); opacity: 0; } }
+@keyframes comment-roll {
+  0%,25% { transform: translateY(0); }
+  33%,58% { transform: translateY(-40px); }
+  66%,91% { transform: translateY(-80px); }
+  100% { transform: translateY(-120px); }
+}
+.unified-top-tabs button, .prediction-filter button { -webkit-tap-highlight-color: transparent; }
+.hero { height:184px; display:grid; grid-template-columns:44px 1fr 44px; grid-template-rows:36px; align-items:center; }
+.hero h1 { grid-area:1 / 2; margin:0; font-size:17px; }
+.hero .back { grid-area:1 / 1; position:static; height:36px; padding:0; display:flex; align-items:center; justify-content:center; }
+.hero .back::before { content:""; width:8px; height:8px; border:solid currentColor; border-width:0 0 2px 2px; transform:rotate(45deg); }
+.dock-header, .sheet-options button, .amount-stepper button, .amount-presets button { color:#18191c; }
+
+.comment-panel .composer { height:52px; }
+.composer input { height:36px; min-width:0; border-radius:18px; font-size:16px; }
+.composer input::placeholder { font-size:14px; }
+.composer button { width:40px; height:44px; padding:0; font-size:26px; line-height:1; }
+
+@media (max-width:767px) {
+ .hero { box-sizing:content-box; padding-top:env(safe-area-inset-top, 0px); background-position:center top; }
+}
+.hero {
+ background-image:url('./assets/hero-mountains.webp');
+ background-size:cover;
+ background-position:center 50%;
+ grid-template-rows:36px auto; align-content:start; }
+.hero .show-logo { grid-area:2 / 1 / 3 / -1; justify-self:center; width:min(44%, 176px); height:auto; margin-top:8px; transform:translateX(4px); z-index:1; }
+@media (max-width:767px) {
+ html { background:#124ea0 url('./assets/hero-mountains.webp') center top / 100% auto no-repeat; }
+ body { background:transparent; }
+}
+.top-bet-label { font-weight:500; }
+.discussion-dock.open .composer {
+ position:absolute; inset:auto 0 0; z-index:2;
+ box-sizing:content-box; padding-bottom:env(safe-area-inset-bottom, 0px);
+ background:#fff;
+}
+.discussion-dock.open .dock-body { padding-bottom:calc(52px + env(safe-area-inset-bottom, 0px)); }
+
+.hero.hero-with-artwork {
+  display: flow-root;
+  overflow: hidden;
+  height: auto;
+  padding: 0;
+  background: none;
+}
+.hero.hero-with-artwork::after {
+  bottom: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, #087bc900, #087bc9);
+}
+.hero-artwork {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: -18px;
+}
+.hero-with-artwork .back {
+  position: absolute;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  width: 44px;
+}
+.unified-top-tabs + .unified-card-shell {
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+/* Keep the card overlays aligned with the artwork below the removed tabs. */
+.unified-top-tabs + .unified-card-shell .unified-top-card {
+  margin-top: -28%;
+}
+@media (max-width: 767px) {
+  html:has(.hero-with-artwork) { background: #087bc9; }
+}
