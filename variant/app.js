@@ -1,6 +1,6 @@
 const predictionData=[
-  {state:'open',tag:'热　进行中',title:'《后会友期》节目中青稚（张庆波）与白小纯（陈礼根）会和好吗'},
-  {state:'closed',tag:'新　已封盘',title:'PEL巅峰挑战赛上青稚和白小纯是否会对上'},
+  {state:'open',badge:'硬币奖池过亿', tag:'进行中',title:'《后会友期》节目中青稚（张庆波）与白小纯（陈礼根）会和好吗'},
+  {state:'closed',badge:'新第7期更新', tag:'已封盘',title:'PEL巅峰挑战赛上青稚和白小纯是否会对上'},
   {state:'open',tag:'进行中',title:'节目《后会友期》节目中许飞与厉娜会和好吗'},
   {state:'closed',tag:'已封盘',title:'节目《后会友期》节目中王子璇与文吉儿会和好吗'}
 ];
@@ -263,6 +263,15 @@ document.querySelectorAll('.prediction').forEach((card,i)=>{
  image.src=`./assets/prediction-card-${i+1}.png`;
  image.alt=predictionData[i].title;
  card.prepend(image);
+ const prediction = predictionData[i];
+ if (prediction.badge) {
+  const details = document.createElement('div');
+  details.className = 'prediction-details';
+  details.innerHTML = `<div><span class="tag badge-${prediction.state}">${prediction.badge}</span><span class="tag state-${prediction.state}">${prediction.tag}</span></div>
+   <div class="prediction-pool">硬币奖池：10598　8月31日 15:30封盘</div>`;
+  card.append(details);
+ }
+
 });
 const firstPrediction=predictions.querySelector('.prediction');
 const coinRows=[{coins:30341,percent:50},{coins:9341,percent:50}];

@@ -661,3 +661,21 @@
 @media (max-width: 767px) {
   html:has(.hero-with-artwork) { background: #026AC3; }
 }
+
+.prediction.screenshot-card:has(.prediction-details) { container-type: inline-size; }
+.prediction-details {
+  position: absolute;
+  top: 20.2cqw;
+  left: 3.5%;
+  right: 3.5%;
+  padding: 1px 0 2px;
+  background: #fff;
+  font-size: 11px;
+  line-height: 14px;
+  pointer-events: none;
+}
+.prediction-details .tag { padding: 0 4px; }
+.prediction-details .badge-open { background: #ff6819; }
+.prediction-details .badge-closed { background: #29b9f0; }
+.prediction-details .state-closed { background: #a4adbb; }
+.prediction-pool { margin-top: 2px; color: #9499a0; }
