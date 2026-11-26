@@ -349,18 +349,11 @@
 }
 .unified-top-tabs button:focus-visible { outline: 2px solid white; outline-offset: -2px; }
 .unified-top-tabs span { position: relative; }
-.unified-top-tabs button[aria-pressed="true"]::after,
 .tab-progress {
   position: absolute;
   inset: auto 0 0;
   height: 2px;
   pointer-events: none;
-}
-.unified-top-tabs button[aria-pressed="true"]::after {
-  content: '';
-  background: #ff66994d;
-}
-.tab-progress {
   z-index: 1;
   background: #ff6699;
   transform: scaleX(0);
