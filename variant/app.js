@@ -40,7 +40,7 @@ function drawUnifiedChart(index){
   return `<polyline stroke="${color}" points="${points}"/>${dots}`;
  };
  chart.innerHTML = `
-  <h3 class="chart-heading">每日新增硬币占比</h3>
+  <h3 class="chart-heading">今日新增硬币占比</h3>
   <div class="chart-ratios" aria-live="polite"><span></span><span></span></div>
   <div class="chart-body">
    <svg class="chart-lines" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
