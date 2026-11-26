@@ -76,7 +76,7 @@ for (const label of ['和好', '不和好']) {
  const button = document.createElement('button');
  button.type = 'button';
  button.innerHTML = '<span class="top-bet-label">' + label + ' <span class="top-bet-ratio"></span></span>' +
-  '<span class="top-bet-coins"><span class="coin-icon" aria-hidden="true">币</span><span class="coin-total"></span></span>';
+  '<span class="top-bet-coins"><span>硬币</span><span class="coin-total"></span></span>';
  betHotspots.append(button);
 }
 document.querySelector('.unified-top-card').append(betHotspots);
