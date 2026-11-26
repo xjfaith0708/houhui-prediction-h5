@@ -174,6 +174,7 @@ const tabImages = Array.from({length: 4}, (_, index) => {
 const tabList = document.querySelector('.unified-top-tabs');
 const carouselTabs = [...tabList.querySelectorAll('button')];
 function updateTabEdge() {
+ tabList.classList.toggle('has-previous-tabs', tabList.scrollLeft > 1);
  tabList.classList.toggle('has-more-tabs', tabList.scrollWidth - tabList.clientWidth - tabList.scrollLeft > 1);
 }
 tabList.addEventListener('scroll', updateTabEdge, {passive: true});

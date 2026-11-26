@@ -321,9 +321,12 @@
   overflow-x: auto;
   scrollbar-width: none;
 }
+.unified-top-tabs.has-previous-tabs,
 .unified-top-tabs.has-more-tabs {
-  mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+  mask-image: linear-gradient(to right, var(--tab-left-edge, #000), #000 24px, #000 calc(100% - 24px), var(--tab-right-edge, #000));
 }
+.unified-top-tabs.has-previous-tabs { --tab-left-edge: transparent; }
+.unified-top-tabs.has-more-tabs { --tab-right-edge: transparent; }
 .unified-top-tabs button {
   position: relative;
   flex: none;
