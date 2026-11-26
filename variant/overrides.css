@@ -343,19 +343,28 @@
   cursor: pointer;
 }
 .unified-top-tabs button[aria-pressed="true"] {
-  background: rgb(255 255 255 / 85%);
+  background: #fff;
   color: #FF6699;
   font-weight: 700;
 }
 .unified-top-tabs button:focus-visible { outline: 2px solid white; outline-offset: -2px; }
 .unified-top-tabs span { position: relative; }
+.unified-top-tabs button[aria-pressed="true"]::after,
 .tab-progress {
   position: absolute;
-  inset: 0;
-  background: #fff;
+  inset: auto 0 0;
+  height: 2px;
+  pointer-events: none;
+}
+.unified-top-tabs button[aria-pressed="true"]::after {
+  content: '';
+  background: #ff66994d;
+}
+.tab-progress {
+  z-index: 1;
+  background: #ff6699;
   transform: scaleX(0);
   transform-origin: left center;
-  pointer-events: none;
 }
 .bet-hotspots { position:absolute;left:4.5%;top:46.4%;width:91%;height:10.8%;display:flex;gap:4px; }
 .bet-hotspots button { flex:1;border:0;background:transparent;cursor:pointer; }
