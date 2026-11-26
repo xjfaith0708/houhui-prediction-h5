@@ -268,7 +268,7 @@ document.querySelectorAll('.prediction').forEach((card,i)=>{
   const details = document.createElement('div');
   details.className = 'prediction-details';
   details.innerHTML = `<div><span class="tag badge-${prediction.state}">${prediction.badge}</span><span class="tag state-${prediction.state}">${prediction.tag}</span></div>
-   <div class="prediction-pool">硬币奖池：10598　8月31日 15:30封盘</div>`;
+   <span class="prediction-pool">硬币奖池：10598</span><span class="prediction-pool">8月31日 15:30封盘</span>`;
   card.append(details);
  }
 

@@ -665,6 +665,10 @@
 .prediction.screenshot-card:has(.prediction-details) { container-type: inline-size; }
 .prediction-details {
   position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
   top: 20.2cqw;
   left: 3.5%;
   right: 3.5%;
@@ -678,4 +682,4 @@
 .prediction-details .badge-open { background: #ff6819; }
 .prediction-details .badge-closed { background: #29b9f0; }
 .prediction-details .state-closed { background: #a4adbb; }
-.prediction-pool { margin-top: 2px; color: #9499a0; }
+.prediction-pool { color: #9499a0; white-space: nowrap; }
