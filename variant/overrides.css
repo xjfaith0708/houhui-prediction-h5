@@ -562,11 +562,13 @@
 .chart-lines path { stroke: #e1dedb; stroke-width: 1; vector-effect: non-scaling-stroke; }
 .chart-lines polyline { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .chart-marker-layer { position: absolute; top: 6%; left: 0; width: calc(100% - 25px); height: 70%; pointer-events: none; }
-.chart-marker-layer i { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: currentColor; color: #ff6699; transform: translate(-50%, -50%); }
+.chart-guide { position: absolute; inset: 0 auto 0 0; width: 1px; background: #61666d55; }
+.chart-marker-layer i { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: currentColor; color: #ff6699; transform: translate(-50%, -50%); }
 .chart-marker-layer i + i { color: #0ea9f1; }
-.chart-marker-layer i::after { will-change: transform, opacity; content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .42; }
+.chart-marker-layer i.is-latest { width: 11px; height: 11px; }
+.chart-marker-layer i.is-latest::after { will-change: transform, opacity; content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; border-radius: 50%; opacity: .42; }
 @media (prefers-reduced-motion: no-preference) {
-  .chart-marker-layer i::after { animation: chart-ring 2.1s ease-in-out infinite; }
+  .chart-marker-layer i.is-latest::after { animation: chart-ring 2.1s ease-in-out infinite; }
 }
 @keyframes chart-ring {
   0% { transform: scale(.8); opacity: 0; }
@@ -575,7 +577,7 @@
 }
 .chart-scale { position: absolute; top: 6%; left: 90%; right: 0; height: 70%; color: #b0b5bf; font-size: 9px; }
 .chart-scale span { position: absolute; right: 0; top: var(--tick); transform: translateY(-50%); }
-.chart-days { position: absolute; top: 0; bottom: 0; left: 0; width: calc(100% - 25px); }
+.chart-days { touch-action: pan-y; position: absolute; top: 0; bottom: 0; left: 0; width: calc(100% - 25px); }
 .chart-days button { position: absolute; inset: 0 auto 0 var(--day-x); width: 20%; transform: translateX(-50%); display: flex; align-items: flex-end; justify-content: center; padding: 0 0 3px; border: 0; background: transparent; color: #767676; font-size: 11px; cursor: pointer; }
 .chart-days button[aria-pressed="true"] { color: #767676; }
 .chart-days button:focus-visible { outline: 2px solid #004078; outline-offset: -2px; }
@@ -636,7 +638,7 @@
   display: block;
   width: 100%;
   height: auto;
-  margin: -12px 0 -48px;
+  margin: -12px 0 -36px;
 }
 .hero-with-artwork .back {
   position: absolute;

@@ -47,7 +47,7 @@ function drawUnifiedChart(index){
     ${[0,25,50,75,100].map(value => `<path d="M 0 ${value} H 300"/>`).join('')}
     ${series(red, '#f775a1')}${series(blue, '#36a9e7')}
    </svg>
-   <div class="chart-marker-layer" aria-hidden="true"><i></i><i></i></div>
+   <div class="chart-marker-layer" aria-hidden="true"><span class="chart-guide"></span><i></i><i></i></div>
    <div class="chart-scale" aria-hidden="true">${[100,75,50,25,0].map(value => `<span style="--tick:${100-value}%">${value}%</span>`).join('')}</div>
    <div class="chart-days" aria-label="选择走势图日期">
     ${dates.map((date, i) => `<button type="button" aria-label="查看 ${date} 占比" data-day="${i}" style="--day-x:${x(i)/3}%"><span>${date}</span></button>`).join('')}
@@ -56,17 +56,47 @@ function drawUnifiedChart(index){
  const ratios = chart.querySelectorAll('.chart-ratios span');
  const days = [...chart.querySelectorAll('.chart-days button')];
  const markers = chart.querySelectorAll('.chart-marker-layer i');
+ const guide = chart.querySelector('.chart-guide');
+ const dragArea = chart.querySelector('.chart-days');
+ const latestDay = dates.length - 1;
+ let selectedDay;
+ let activePointer;
  function selectDay(day) {
+  if (day === selectedDay) return;
+  selectedDay = day;
+  guide.style.left = x(day) / 3 + '%';
   ratios[0].textContent = '和好 ' + red[day] + '%';
   ratios[1].textContent = '不和好 ' + blue[day] + '%';
   days.forEach((button, i) => button.setAttribute('aria-pressed', String(day === i)));
   [red[day], blue[day]].forEach((value, side) => {
+   markers[side].classList.toggle('is-latest', day === latestDay);
    markers[side].style.left = x(day) / 3 + '%';
    markers[side].style.top = y(value) + '%';
   });
  }
- days.forEach((button, i) => button.onclick = () => selectDay(i));
- selectDay(dates.length - 1);
+ days.forEach((button, i) => button.onclick = event => {
+  if (event.detail === 0) selectDay(i);
+ });
+ function selectPointerDay(event) {
+  const bounds = dragArea.getBoundingClientRect();
+  const coordinate = (event.clientX - bounds.left) / bounds.width * 300;
+  selectDay(Math.max(0, Math.min(latestDay, Math.round((coordinate - x(0)) / (x(1) - x(0))))));
+ }
+ dragArea.addEventListener('pointerdown', event => {
+  if (!event.isPrimary || event.button !== 0) return;
+  activePointer = event.pointerId;
+  dragArea.setPointerCapture(activePointer);
+  progressAnimation?.pause();
+  selectPointerDay(event);
+ });
+ dragArea.addEventListener('pointermove', event => {
+  if (event.pointerId === activePointer) selectPointerDay(event);
+ });
+ dragArea.addEventListener('lostpointercapture', () => {
+  activePointer = undefined;
+  if (!betDialog.open) progressAnimation?.play();
+ });
+ selectDay(latestDay);
 }
 const topBetNames = ['许飞与厉娜', '马天宇与张萌', '白小纯与张庆波', '王子璇与文吉儿'];
 const topBetPercentages = [[54, 46], [88, 12], [92, 8], [4, 96]];
