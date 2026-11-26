@@ -22,6 +22,7 @@ function drawUnifiedChart(index){
  feed.innerHTML='<div class="top-comment-track">'+[...texts,...texts].map((text,i)=>`<div${i>=texts.length?' aria-hidden="true"':''}><span class="preview-avatar" aria-hidden="true">${['🌸','☀️','🌿','🌙'][i%4]}</span><span>${text}</span></div>`).join('')+'</div>';
  feed.scrollTop=0;
  const host=document.querySelector('.unified-top-card');
+ host.querySelector('.top-card-question').textContent = '节目《后会友期》中' + topBetNames[index] + '会和好吗';
  let chart = host.querySelector('.prediction-chart');
  if (!chart) {
   chart = document.createElement('div');
@@ -39,6 +40,7 @@ function drawUnifiedChart(index){
   return `<polyline stroke="${color}" points="${points}"/>${dots}`;
  };
  chart.innerHTML = `
+  <h3 class="chart-heading">每日新增硬币占比</h3>
   <div class="chart-ratios" aria-live="polite"><span></span><span></span></div>
   <div class="chart-body">
    <svg class="chart-lines" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
@@ -66,6 +68,7 @@ function drawUnifiedChart(index){
  days.forEach((button, i) => button.onclick = () => selectDay(i));
  selectDay(dates.length - 1);
 }
+const topBetNames = ['许飞与厉娜', '马天宇与张萌', '白小纯与张庆波', '王子璇与文吉儿'];
 const topBetPercentages = [[54, 46], [88, 12], [92, 8], [4, 96]];
 const betHotspots = document.createElement('div');
 betHotspots.className = 'bet-hotspots';
@@ -147,9 +150,8 @@ function updateBet(){
 }
 betHotspots.querySelectorAll('button').forEach((button,i)=>button.addEventListener('click',()=>{
  betReturnFocus=button;betOption=i;betInput.value=100;
- const names=['许飞与厉娜','马天宇与张萌','白小纯与张庆波','王子璇与文吉儿'];
  const percentages=topBetPercentages[window.activePredictionIndex];
- betDialog.querySelector('h2').textContent='节目《后会友期》中'+names[window.activePredictionIndex]+'会和好吗';
+ betDialog.querySelector('h2').textContent='节目《后会友期》中'+topBetNames[window.activePredictionIndex]+'会和好吗';
  betDialog.querySelectorAll('[data-option] b').forEach((b,j)=>b.textContent=percentages[j]+'%');
  updateBet();betDialog.showModal();
 }));
