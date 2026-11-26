@@ -339,7 +339,7 @@
   cursor: pointer;
 }
 .unified-top-tabs button[aria-pressed="true"] {
-  background: rgb(255 255 255 / 90%);
+  background: rgb(255 255 255 / 85%);
   color: #FF6699;
   font-weight: 700;
 }
