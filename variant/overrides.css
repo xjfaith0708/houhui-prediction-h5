@@ -670,9 +670,11 @@
   align-items: center;
   gap: 2px 4px;
   top: 20.2cqw;
-  left: 3.5%;
+  left: calc(3.5% - 1px);
+  padding-left: 1px;
   right: 3.5%;
   padding: 1px 0 2px;
+  min-height: 22px;
   background: #fff;
   font-size: 11px;
   line-height: 14px;
