@@ -486,7 +486,7 @@
 @keyframes top-comments-drift { from {transform:translateY(0)} to {transform:translateY(-50%)} }
 .more { margin-top: 16px; }
 .section-title.discussion { margin-top: 23px; }
-.section-title.first { width: 172px; margin: 23px auto 12px; }
+.section-title.first { width: 172px; margin: 23px auto 20px; }
 .prediction-filter button {
   height: 30px;
   min-height: 30px;
