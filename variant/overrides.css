@@ -685,3 +685,17 @@
 .prediction-details .badge-closed { background: #29b9f0; }
 .prediction-details .state-closed { background: #a4adbb; }
 .prediction-pool { color: #9499a0; white-space: nowrap; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .unified-top-tabs button { transition: background-color 220ms ease, color 220ms ease; }
+  .chart-series { animation: prediction-line-growth 650ms cubic-bezier(.24, .7, .3, 1) both; }
+  .chart-marker-layer { animation: prediction-markers-in 180ms ease-out 470ms both; }
+}
+@keyframes prediction-line-growth {
+  from { clip-path: inset(-8px 100% -8px -8px); }
+  to { clip-path: inset(-8px -8px -8px -8px); }
+}
+@keyframes prediction-markers-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

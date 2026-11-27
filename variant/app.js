@@ -45,6 +45,8 @@ function drawUnifiedChart(index){
   <div class="chart-body">
    <svg class="chart-lines" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
     ${[0,25,50,75,100].map(value => `<path d="M 0 ${value} H 300"/>`).join('')}
+   </svg>
+   <svg class="chart-lines chart-series" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
     ${series(red, '#f775a1')}${series(blue, '#36a9e7')}
    </svg>
    <div class="chart-marker-layer" aria-hidden="true"><span class="chart-guide"></span><i></i><i></i></div>
@@ -236,6 +238,7 @@ function startTabProgress(position, reveal) {
  );
 }
 
+let cardTransition;
 function selectCarouselTab(position) {
  const button = carouselTabs[position];
  const index = Number(button.dataset.card);
@@ -243,6 +246,13 @@ function selectCarouselTab(position) {
  image.src = tabImages[index].src;
  image.alt = button.textContent + '预测卡';
  drawUnifiedChart(index);
+ cardTransition?.cancel();
+ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  cardTransition = image.closest('.unified-card-shell').animate(
+   [{opacity: .62}, {opacity: 1}],
+   {duration: 260, easing: 'ease-out'}
+  );
+ }
  carouselTabs.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
  startTabProgress(position, true);
 }
